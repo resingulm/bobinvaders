@@ -16,38 +16,18 @@ A classic Space Invaders game built with pure HTML5 Canvas and vanilla JavaScrip
 
 ### Option A: Run Locally
 
-This is a pure HTML5/JavaScript game with no dependencies or build process required!
+This is a pure HTML5/JavaScript game with **no dependencies or build process required**!
 
-**Method 1: Direct File Opening**
+**Simply open the file:**
 1. Clone or download this repository
 2. Navigate to the project folder
 3. Double-click `index.html` to open it in your default browser
 
-**Method 2: Using a Local Server (Recommended)**
+That's it! The game will run immediately in your browser.
 
-Using Python:
-```bash
-# Python 3
-python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-```
-
-Using Node.js (if you have it installed):
-```bash
-# Install http-server globally (one-time)
-npm install -g http-server
-
-# Run server
-http-server -p 8000
-```
-
-Using VS Code:
-- Install the "Live Server" extension
-- Right-click on `index.html` and select "Open with Live Server"
-
-Then open your browser and navigate to `http://localhost:8000`
+**Alternative (if you prefer a local server):**
+- VS Code: Install "Live Server" extension and right-click on `index.html`
+- Command line: `npx http-server -p 8000` (requires Node.js)
 
 ### Option B: GitHub Pages Deployment
 
