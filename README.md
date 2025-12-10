@@ -197,6 +197,8 @@ This TypeScript version includes:
 
 Created as a classic arcade game tribute using TypeScript and modern web technologies.
 
+**Built with [IBM Bob](https://www.ibm.com/products/bob)** - An AI-powered coding assistant that helped migrate this project to TypeScript with full type safety and modern development practices.
+
 ## License
 
 Free to use and modify for personal and educational purposes.
