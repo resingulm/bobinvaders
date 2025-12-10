@@ -12,9 +12,68 @@ A classic Space Invaders game built with pure HTML5 Canvas and vanilla JavaScrip
 - **Win/Lose Conditions**: Clear all aliens to win, or lose when aliens reach Earth or you run out of lives
 - **Retro Aesthetic**: Classic arcade-style graphics with neon colors
 
+## 🚀 Running the Project
+
+### Option A: Run Locally
+
+This is a pure HTML5/JavaScript game with no dependencies or build process required!
+
+**Method 1: Direct File Opening**
+1. Clone or download this repository
+2. Navigate to the project folder
+3. Double-click `index.html` to open it in your default browser
+
+**Method 2: Using a Local Server (Recommended)**
+
+Using Python:
+```bash
+# Python 3
+python -m http.server 8000
+
+# Python 2
+python -m SimpleHTTPServer 8000
+```
+
+Using Node.js (if you have it installed):
+```bash
+# Install http-server globally (one-time)
+npm install -g http-server
+
+# Run server
+http-server -p 8000
+```
+
+Using VS Code:
+- Install the "Live Server" extension
+- Right-click on `index.html` and select "Open with Live Server"
+
+Then open your browser and navigate to `http://localhost:8000`
+
+### Option B: GitHub Pages Deployment
+
+This project is deployed and playable at: **[Your GitHub Pages URL will be here]**
+
+**To deploy your own version:**
+
+1. **Fork or clone this repository to your GitHub account**
+
+2. **Enable GitHub Pages:**
+   - Go to your repository on GitHub
+   - Click on "Settings" tab
+   - Scroll down to "Pages" section (in the left sidebar)
+   - Under "Source", select the branch you want to deploy (usually `main` or `master`)
+   - Select the root folder `/` as the source
+   - Click "Save"
+
+3. **Access your game:**
+   - GitHub will provide a URL like: `https://yourusername.github.io/bobinvaders/`
+   - The site will be live in a few minutes
+
+**Note:** No build process is required! GitHub Pages will serve the static files directly.
+
 ## How to Play
 
-1. Open `index.html` in any modern web browser
+1. Open the game in your browser (locally or via GitHub Pages)
 2. Press **ENTER** to start the game
 3. Use **← →** arrow keys to move your ship left and right
 4. Press **SPACE** to shoot at the aliens
