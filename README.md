@@ -1,5 +1,8 @@
 # Space Invaders - TypeScript Edition
 
+
+## 🎮 [Play Online Now!](https://resingulm.github.io/bobinvaders/)
+
 A classic Space Invaders game built with TypeScript, HTML5 Canvas, and Web Audio API.
 
 ## Features
