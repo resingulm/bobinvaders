@@ -51,7 +51,7 @@ Then open your browser and navigate to `http://localhost:8000`
 
 ### Option B: GitHub Pages Deployment
 
-This project is deployed and playable at: **[Your GitHub Pages URL will be here]**
+This project is deployed and playable at: **https://resingulm.github.io/bobinvaders/**
 
 **To deploy your own version:**
 
