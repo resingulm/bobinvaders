@@ -59,25 +59,23 @@ This will watch for changes in your TypeScript files and automatically recompile
 
 ### Build Commands
 
-- `npm run build` - Compile TypeScript to JavaScript
-- `npm run watch` - Watch mode for development
-- `npm run clean` - Remove compiled files
-- `npm run dev` - Same as watch mode
+```bash
+npm run build   # Compile TypeScript to JavaScript
+npm run watch   # Watch mode for development
+npm run clean   # Remove compiled files
+npm run dev     # Same as watch mode
+```
 
-### Using a Local Server (Optional)
+### Running the Game
+
+After building, simply **double-click `index.html`** to open it in your browser. No server needed!
+
+**Optional - Using a Local Server:**
 
 If you prefer to use a local server:
 
-**VS Code:**
-- Install the "Live Server" extension
-- Right-click on `index.html` and select "Open with Live Server"
-
-**Command line:**
-```bash
-npx http-server -p 8000
-```
-
-Then open your browser and navigate to `http://localhost:8000`
+- **VS Code:** Install "Live Server" extension, right-click `index.html` → "Open with Live Server"
+- **Command line:** `npx http-server -p 8000` then navigate to `http://localhost:8000`
 
 ## How to Play
 
