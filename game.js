@@ -36,6 +36,161 @@ const scoreElement = document.getElementById('score');
 const livesElement = document.getElementById('lives');
 const messageElement = document.getElementById('message');
 
+// Audio Context - Initialize lazily to avoid blocking issues
+let audioContext = null;
+
+// Initialize audio context on first user interaction
+function initAudio() {
+    if (!audioContext && typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) {
+        try {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+            console.warn('Audio context initialization failed:', e);
+        }
+    }
+}
+
+// Sound Effects Functions
+const sounds = {
+    playerShoot: () => {
+        if (!audioContext) return;
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    },
+    
+    alienShoot: () => {
+        if (!audioContext) return;
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.15);
+            
+            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.15);
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    },
+    
+    explosion: () => {
+        if (!audioContext) return;
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    },
+    
+    playerHit: () => {
+        if (!audioContext) return;
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.3);
+            
+            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    },
+    
+    gameOver: () => {
+        if (!audioContext) return;
+        try {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.5);
+            
+            gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    },
+    
+    win: () => {
+        if (!audioContext) return;
+        try {
+            // Victory fanfare
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            notes.forEach((freq, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(freq, audioContext.currentTime + index * 0.15);
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + index * 0.15);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.15 + 0.3);
+                
+                oscillator.start(audioContext.currentTime + index * 0.15);
+                oscillator.stop(audioContext.currentTime + index * 0.15 + 0.3);
+            });
+        } catch (e) {
+            console.warn('Sound effect failed:', e);
+        }
+    }
+};
+
 // Game Variables
 let gameState = GAME_STATE.MENU;
 let score = 0;
@@ -77,6 +232,7 @@ class Player {
                 -BULLET_SPEED,
                 'player'
             ));
+            sounds.playerShoot();
             this.canShoot = false;
         }
         
@@ -102,9 +258,11 @@ class Player {
 
     takeDamage() {
         lives--;
+        sounds.playerHit();
         updateUI();
         if (lives <= 0) {
             gameState = GAME_STATE.GAME_OVER;
+            sounds.gameOver();
             showMessage('GAME OVER!<br>Press ENTER to restart');
         }
     }
@@ -197,6 +355,7 @@ class Alien {
                 BULLET_SPEED,
                 'alien'
             ));
+            sounds.alienShoot();
         }
     }
 }
@@ -262,6 +421,7 @@ function update() {
     // Check win condition
     if (aliens.every(alien => !alien.alive)) {
         gameState = GAME_STATE.WIN;
+        sounds.win();
         showMessage('YOU WIN!<br>Press ENTER to play again');
     }
 }
@@ -295,6 +455,7 @@ function updateAliens() {
                 // Check if aliens reached the bottom
                 if (alien.y + alien.height >= player.y) {
                     gameState = GAME_STATE.GAME_OVER;
+                    sounds.gameOver();
                     showMessage('GAME OVER!<br>Aliens reached Earth!<br>Press ENTER to restart');
                 }
             }
@@ -320,6 +481,7 @@ function checkCollisions() {
                 bullet.y + bullet.height > alien.y) {
                 alien.alive = false;
                 score += alien.points;
+                sounds.explosion();
                 updateUI();
                 hit = true;
             }
@@ -413,9 +575,11 @@ document.addEventListener('keydown', (e) => {
     
     // Start/Restart game
     if (e.key === 'Enter') {
-        if (gameState === GAME_STATE.MENU || 
-            gameState === GAME_STATE.GAME_OVER || 
+        if (gameState === GAME_STATE.MENU ||
+            gameState === GAME_STATE.GAME_OVER ||
             gameState === GAME_STATE.WIN) {
+            // Initialize audio on first user interaction
+            initAudio();
             initGame();
         }
     }
