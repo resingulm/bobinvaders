@@ -182,7 +182,7 @@ The compiled JavaScript files in the `dist/` directory are ready for deployment.
 2. Push to GitHub
 3. Enable GitHub Pages in repository settings
 4. Select the branch and root folder
-5. Your game will be live at: `https://yourusername.github.io/bobinvaders/`
+5. Your game will be live at: `https://resingulm.github.io/bobinvaders/`
 
 ## Migration from JavaScript
 
@@ -196,6 +196,8 @@ This TypeScript version includes:
 ## Credits
 
 Created as a classic arcade game tribute using TypeScript and modern web technologies.
+
+**Built with [IBM Bob](https://www.ibm.com/products/bob)** - An AI-powered coding assistant that helped migrate this project to TypeScript with full type safety and modern development practices.
 
 ## License
 
