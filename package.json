@@ -1,0 +1,27 @@
+{
+  "name": "bobinvaders",
+  "version": "1.0.0",
+  "description": "A classic Space Invaders game built with pure HTML5 Canvas and TypeScript",
+  "main": "dist/game.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resingulm/bobinvaders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/resingulm/bobinvaders/issues"
+  },
+  "homepage": "https://github.com/resingulm/bobinvaders#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

@@ -21,3 +21,7 @@ npm-debug.log*
 
 # Optional: if you add node_modules later
 node_modules/
+
+# TypeScript
+dist/
+*.tsbuildinfo

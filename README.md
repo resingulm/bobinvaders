@@ -1,6 +1,6 @@
-# Space Invaders - Classic Browser Game
+# Space Invaders - TypeScript Edition
 
-A classic Space Invaders game built with pure HTML5 Canvas and vanilla JavaScript - no dependencies required!
+A classic Space Invaders game built with TypeScript, HTML5 Canvas, and Web Audio API.
 
 ## Features
 
@@ -9,51 +9,76 @@ A classic Space Invaders game built with pure HTML5 Canvas and vanilla JavaScrip
 - **Lives System**: Start with 3 lives
 - **Progressive Difficulty**: Aliens speed up as you destroy them
 - **Responsive Controls**: Smooth keyboard controls for movement and shooting
+- **Sound Effects**: Retro-style sound effects using Web Audio API
 - **Win/Lose Conditions**: Clear all aliens to win, or lose when aliens reach Earth or you run out of lives
 - **Retro Aesthetic**: Classic arcade-style graphics with neon colors
+- **Type Safety**: Full TypeScript implementation with strict type checking
 
 ## 🚀 Running the Project
 
-### Option A: Run Locally
+### Prerequisites
 
-This is a pure HTML5/JavaScript game with **no dependencies or build process required**!
+- Node.js (v14 or higher)
+- npm (comes with Node.js)
 
-**Simply open the file:**
-1. Clone or download this repository
-2. Navigate to the project folder
-3. Double-click `index.html` to open it in your default browser
+### Development Setup
 
-That's it! The game will run immediately in your browser.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/resingulm/bobinvaders.git
+   cd bobinvaders
+   git checkout typescript-migration
+   ```
 
-**Alternative (if you prefer a local server):**
-- VS Code: Install "Live Server" extension and right-click on `index.html`
-- Command line: `npx http-server -p 8000` (requires Node.js)
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Option B: GitHub Pages Deployment
+3. **Build the TypeScript code**
+   ```bash
+   npm run build
+   ```
 
-This project is deployed and playable at: **https://resingulm.github.io/bobinvaders/**
+4. **Open the game**
+   - Simply double-click `index.html` to open it in your browser
+   - Or use a local server (see below)
 
-**To deploy your own version:**
+### Development Mode
 
-1. **Fork or clone this repository to your GitHub account**
+For active development with automatic recompilation:
 
-2. **Enable GitHub Pages:**
-   - Go to your repository on GitHub
-   - Click on "Settings" tab
-   - Scroll down to "Pages" section (in the left sidebar)
-   - Under "Source", select the branch you want to deploy (usually `main` or `master`)
-   - Select the root folder `/` as the source
-   - Click "Save"
+```bash
+npm run dev
+```
 
-3. **Access your game:**
-   - GitHub will provide a URL like: `https://yourusername.github.io/bobinvaders/`
-   - The site will be live in a few minutes
+This will watch for changes in your TypeScript files and automatically recompile them.
 
-**Note:** No build process is required! GitHub Pages will serve the static files directly.
+### Build Commands
+
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm run watch` - Watch mode for development
+- `npm run clean` - Remove compiled files
+- `npm run dev` - Same as watch mode
+
+### Using a Local Server (Optional)
+
+If you prefer to use a local server:
+
+**VS Code:**
+- Install the "Live Server" extension
+- Right-click on `index.html` and select "Open with Live Server"
+
+**Command line:**
+```bash
+npx http-server -p 8000
+```
+
+Then open your browser and navigate to `http://localhost:8000`
 
 ## How to Play
 
-1. Open the game in your browser (locally or via GitHub Pages)
+1. Open the game in your browser
 2. Press **ENTER** to start the game
 3. Use **← →** arrow keys to move your ship left and right
 4. Press **SPACE** to shoot at the aliens
@@ -80,53 +105,97 @@ This project is deployed and playable at: **https://resingulm.github.io/bobinvad
 
 ## Technical Details
 
-### Files
-- `index.html` - Main HTML structure and canvas element
-- `styles.css` - Styling with retro neon aesthetic
-- `game.js` - Complete game logic (449 lines)
+### Project Structure
+```
+bobinvaders/
+├── src/
+│   └── game.ts          # TypeScript source code
+├── dist/                # Compiled JavaScript (generated)
+│   ├── game.js
+│   ├── game.js.map
+│   ├── game.d.ts
+│   └── game.d.ts.map
+├── index.html           # Main HTML file
+├── styles.css           # Game styling
+├── tsconfig.json        # TypeScript configuration
+├── package.json         # Project dependencies
+└── README.md           # This file
+```
+
+### TypeScript Features
+- **Strict Type Checking**: Full type safety with strict mode enabled
+- **Enums**: Game states defined as TypeScript enums
+- **Interfaces**: Type definitions for game objects
+- **Classes**: Object-oriented design with typed classes
+- **Type Annotations**: Explicit types throughout the codebase
 
 ### Architecture
 - **Player Class**: Handles player ship movement, shooting, and rendering
 - **Alien Class**: Manages individual alien behavior and appearance
 - **Bullet Class**: Handles projectile physics for both player and aliens
-- **Game State Manager**: Controls game flow (menu, playing, game over, win)
+- **Game State Manager**: Controls game flow using TypeScript enums
 - **Collision Detection**: Efficient bounding box collision system
 - **Game Loop**: 60 FPS rendering using requestAnimationFrame
+- **Audio System**: Web Audio API with lazy initialization
 
 ### Browser Compatibility
 Works in all modern browsers that support:
 - HTML5 Canvas
-- ES6 JavaScript (classes, arrow functions, etc.)
-- requestAnimationFrame
+- ES2017 JavaScript
+- Web Audio API
+- TypeScript (compiled to JavaScript)
 
 ## Customization
 
-You can easily modify game parameters in `game.js`:
+You can easily modify game parameters in `src/game.ts`:
 
-```javascript
-const PLAYER_SPEED = 5;           // Player movement speed
-const BULLET_SPEED = 7;           // Bullet velocity
-const ALIEN_SPEED = 1;            // Initial alien speed
-const ALIEN_SHOOT_CHANCE = 0.001; // Alien firing frequency
-const ALIEN_ROWS = 5;             // Number of alien rows
-const ALIEN_COLS = 11;            // Number of alien columns
+```typescript
+const PLAYER_SPEED: number = 5;           // Player movement speed
+const BULLET_SPEED: number = 7;           // Bullet velocity
+const ALIEN_SPEED: number = 1;            // Initial alien speed
+const ALIEN_SHOOT_CHANCE: number = 0.001; // Alien firing frequency
+const ALIEN_ROWS: number = 5;             // Number of alien rows
+const ALIEN_COLS: number = 11;            // Number of alien columns
 ```
 
-## Future Enhancements
+After making changes, run `npm run build` to recompile.
 
-Potential features to add:
-- Sound effects and background music
-- Multiple levels with increasing difficulty
-- Power-ups (shields, rapid fire, etc.)
-- High score persistence using localStorage
-- Mobile touch controls
-- Particle effects for explosions
-- Defensive barriers/bunkers
-- Boss battles
+## Development
+
+### Adding New Features
+
+1. Edit `src/game.ts`
+2. Run `npm run build` or use `npm run dev` for auto-compilation
+3. Refresh your browser to see changes
+
+### Type Checking
+
+TypeScript provides compile-time type checking. If there are type errors, the build will fail with helpful error messages.
+
+## Deployment
+
+### GitHub Pages
+
+The compiled JavaScript files in the `dist/` directory are ready for deployment. To deploy:
+
+1. Ensure `dist/` is committed to your repository
+2. Push to GitHub
+3. Enable GitHub Pages in repository settings
+4. Select the branch and root folder
+5. Your game will be live at: `https://yourusername.github.io/bobinvaders/`
+
+## Migration from JavaScript
+
+This TypeScript version includes:
+- Full type annotations for all variables, functions, and classes
+- Enum for game states instead of plain object
+- Interface definitions for complex types
+- Strict null checking and type safety
+- Better IDE support with autocomplete and type hints
 
 ## Credits
 
-Created as a classic arcade game tribute using pure web technologies.
+Created as a classic arcade game tribute using TypeScript and modern web technologies.
 
 ## License
 
