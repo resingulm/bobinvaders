@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    letter-spacing: 5px;
+}
+
+.info-panel {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.score-display {
+    color: #ffff00;
+}
+
+.lives-display {
+    color: #ff00ff;
+}
+
+#gameCanvas {
+    border: 3px solid #00ffff;
+    background: #000;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.controls {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.controls p {
+    margin: 5px 0;
+}
+
+.controls strong {
+    color: #00ffff;
+}
+
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px solid #00ff00;
+    border-radius: 10px;
+    display: none;
+    z-index: 10;
+    text-shadow: 0 0 10px #00ff00;
+    pointer-events: none;
+}
+
+.message.show {
+    display: block;
+}
+
+@media (max-width: 850px) {
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .info-panel {
+        font-size: 1em;
+    }
+}
+
+/* Made with Bob */
