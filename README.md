@@ -30,7 +30,6 @@ A classic Space Invaders game built with TypeScript, HTML5 Canvas, and Web Audio
    ```bash
    git clone https://github.com/resingulm/bobinvaders.git
    cd bobinvaders
-   git checkout typescript-migration
    ```
 
 2. **Install dependencies**
